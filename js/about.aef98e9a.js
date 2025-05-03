@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunksudkou_game"]=self["webpackChunksudkou_game"]||[]).push([[594],{1417:function(u,n,s){s.r(n),s.d(n,{default:function(){return i}});var t=function(){var u=this;u._self._c;return u._m(0)},e=[function(){var u=this,n=u._self._c;return n("div",{staticClass:"about"},[n("h1",[u._v("This is an about page")])])}],a=s(1656),l={},r=(0,a.A)(l,t,e,!1,null,null,null),i=r.exports}}]);
+//# sourceMappingURL=about.aef98e9a.js.map
