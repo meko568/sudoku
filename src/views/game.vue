@@ -180,33 +180,5 @@ export default {
       timer: null,
     };
   },
-  mounted() {
-    this.checkgame();
-  },
-  methods: {
-    checkgame: function () {
-      let blocks = document.querySelectorAll(".block");
-      let controls = document.querySelectorAll(".number-button");
-      blocks.forEach((block) => {
-        block.onclick = function () {
-          blocks.forEach((b) => {
-            b.classList.remove("selected-block");
-          });
-          this.classList.add("selected-block");
-        };
-      });
-      controls.forEach((control) => {
-        control.onclick = function () {
-          let block = document.querySelector(".selected-block");
-          let num = this.innerHTML;
-          block.innerHTML = num;
-          if (block.innerHTML !== block.dataset.num) {
-            block.classList.add("wrong");
-            console.log(block.innerHTML, block.dataset.num);
-          }
-        };
-      });
-    },
-  },
 };
 </script>

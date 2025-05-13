@@ -64,16 +64,16 @@ export default {
           // Set difficulty level
           let difficulty = 0;
           if (game.innerHTML === "easy") {
-            difficulty = 7;
+            difficulty = 6;
           }
           if (game.innerHTML === "medium") {
             difficulty = 5;
           }
           if (game.innerHTML === "hard") {
-            difficulty = 3;
+            difficulty = 4;
           }
           if (game.innerHTML === "expert") {
-            difficulty = 2;
+            difficulty = 3;
           }
 
           // Initialize game
@@ -132,6 +132,96 @@ export default {
             });
             index1++;
           });
+          this.checkgame();
+        };
+      });
+    },
+    checkgame: function () {
+      let finish = 0;
+      let blocks = document.querySelectorAll(".block");
+      let controls = document.querySelectorAll(".number-button");
+      console.log(finish);
+      blocks.forEach((block) => {
+        block.onclick = function () {
+          blocks.forEach((b) => {
+            b.classList.remove("selected-block");
+          });
+          blocks.forEach((e) => {
+            if (e.innerHTML === block.innerHTML && e.innerHTML !== "") {
+              e.classList.add("correct");
+            } else {
+              e.classList.remove("correct");
+            }
+          });
+          this.classList.add("selected-block");
+        };
+      });
+      controls.forEach((control) => {
+        control.onclick = function () {
+          if (document.querySelector(".selected-block")) {
+            let block = document.querySelector(".selected-block");
+            let num = this.innerHTML;
+            block.innerHTML = num;
+            let group1 = document.querySelectorAll(`.${block.classList[1]}`);
+            let group2 = document.querySelectorAll(`.${block.classList[2]}`);
+            let group3 = document.querySelectorAll(`.${block.classList[3]}`);
+            if (block.innerHTML !== block.dataset.num) {
+              block.classList.add("wrong");
+              group1.forEach((b) => {
+                if (b.innerHTML === block.innerHTML) {
+                  b.classList.add("wrong");
+                } else {
+                  b.classList.remove("wrong");
+                }
+              });
+              group2.forEach((b) => {
+                if (b.innerHTML === block.innerHTML) {
+                  b.classList.add("wrong");
+                } else {
+                  b.classList.remove("wrong");
+                }
+              });
+              group3.forEach((b) => {
+                if (b.innerHTML === block.innerHTML) {
+                  b.classList.add("wrong");
+                } else {
+                  b.classList.remove("wrong");
+                }
+              });
+            } else {
+              blocks.forEach((e) => {
+                if (e.innerHTML === block.innerHTML && e.innerHTML !== "") {
+                  e.classList.add("correct");
+                } else {
+                  e.classList.remove("correct");
+                }
+              });
+              group1.forEach((b) => {
+                b.classList.remove("wrong");
+              });
+              group2.forEach((b) => {
+                b.classList.remove("wrong");
+              });
+              group3.forEach((b) => {
+                b.classList.remove("wrong");
+              });
+              finish = Array.from(blocks).filter(
+                (block) => block.innerHTML === block.dataset.num
+              ).length;
+              let full1 = Array.from(group1).filter(
+                (e) => e.innerHTML === e.dataset.num
+              );
+              if (full1.length === 9) {
+                block.parentElement.parentElement.classList.add("full");
+                setTimeout(() => {
+                  block.parentElement.parentElement.classList.add("none");
+                }, 700);
+              }
+              if (finish === blocks.length) {
+                alert("game over");
+              }
+            }
+          }
         };
       });
     },
