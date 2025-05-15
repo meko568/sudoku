@@ -37,6 +37,8 @@ export default {
   name: "HomeView",
   data: function () {
     return {
+      mistakes: 0,
+      maxMistakes: 3,
       gameStarted: false,
       time: "00:00",
       score: 0,
@@ -75,7 +77,6 @@ export default {
           if (game.innerHTML === "expert") {
             difficulty = 3;
           }
-
           // Initialize game
           let rows = document.querySelectorAll(".mainrow");
           let grid = this.ex();
@@ -137,10 +138,10 @@ export default {
       });
     },
     checkgame: function () {
+      let vm = this;
       let finish = 0;
       let blocks = document.querySelectorAll(".block");
       let controls = document.querySelectorAll(".number-button");
-      console.log(finish);
       blocks.forEach((block) => {
         block.onclick = function () {
           blocks.forEach((b) => {
@@ -166,6 +167,12 @@ export default {
             let group2 = document.querySelectorAll(`.${block.classList[2]}`);
             let group3 = document.querySelectorAll(`.${block.classList[3]}`);
             if (block.innerHTML !== block.dataset.num) {
+              vm.mistakes++;
+              document.querySelector("p span").innerHTML =
+                +document.querySelector("p span").innerHTML + 1;
+              if (vm.mistakes === vm.maxMistakes) {
+                alert("game-over");
+              }
               block.classList.add("wrong");
               group1.forEach((b) => {
                 if (b.innerHTML === block.innerHTML) {

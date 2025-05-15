@@ -10,12 +10,14 @@ const routes = [
     name: "home",
     component: HomeView,
     meta: { title: "Game Ranks" },
+    props: true,
   },
   {
     path: "/game",
     name: "game",
     meta: { title: "Game" },
     component: game,
+    props: true,
   },
 ];
 

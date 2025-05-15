@@ -1,5 +1,8 @@
 <template>
   <div class="game">
+    <div class="mistakes-counter">
+      <p>Mistakes: <span>0</span>/3</p>
+    </div>
     <div class="row mainrow">
       <div class="therow col-4 row">
         <div class="block row1 cube1 column1 col-4"></div>
