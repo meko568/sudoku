@@ -57,7 +57,7 @@
 .game .mistakes-counter {
   position: absolute;
   top: -10px;
-  left: -100px;
+  right: -100px;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 10px;
   border-radius: 5px;
@@ -110,9 +110,6 @@
   background-color: #e8f5e9;
   transition: background-color 0.3s ease;
 }
-.game .none {
-  display: none;
-}
 
 .none::before {
   display: none;
@@ -134,6 +131,90 @@ h3 {
   text-transform: capitalize;
 }
 
+@media screen and (max-width: 299.98px) {
+  .game .block {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.6em !important;
+  }
+  .game .number-buttons button {
+    width: 15px !important;
+    height: 15px !important;
+    font-size: 0.5em !important;
+  }
+  .game .mistakes-counter {
+    right: -30px !important;
+    padding: 3px !important;
+  }
+}
+.number-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 0.5px !important;
+}
+
+.game-area {
+  background-color: #e6f3ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mistakes-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .number-button {
+    border-width: 0.25px !important;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 767.98px) {
+  .game .block {
+    width: 25px !important;
+    height: 25px !important;
+    font-size: 0.7em !important;
+  }
+  .game .number-buttons button {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.6em !important;
+  }
+  .game .mistakes-counter {
+    right: -40px !important;
+    padding: 4px !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
+  .game .block {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 1.2em !important;
+  }
+  .game .number-buttons button {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1.1em !important;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .game .block {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 1.3em !important;
+  }
+  .game .number-buttons button {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 1.2em !important;
+  }
+}
 .select-game {
   display: flex;
   align-items: center;
@@ -164,11 +245,8 @@ h3 {
 
 .game {
   margin: 20px auto;
-  max-width: 500px;
-  background-color: #e6f3ff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 .game .row {
   margin: 0;
@@ -243,7 +321,6 @@ h3 {
   text-align: center;
   color: #dc3545;
   font-weight: bold;
-  font-size: 1.2em;
 }
 .game .number-buttons {
   display: flex;
@@ -267,4 +344,13 @@ h3 {
 .game .number-buttons .number-button.selected {
   background: #4caf50;
   color: white;
+}
+
+@media (max-width: 767px) {
+  .number-button {
+    border-width: 1px !important;
+  }
+  .number-button .mistakes-counter {
+    font-size: 10px !important;
+  }
 }/*# sourceMappingURL=main.css.map */

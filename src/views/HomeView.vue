@@ -138,10 +138,16 @@ export default {
       });
     },
     checkgame: function () {
+      let blocks = document.querySelectorAll(".block");
       let vm = this;
       let finish = 0;
-      let blocks = document.querySelectorAll(".block");
-      let controls = document.querySelectorAll(".number-button");
+      let earserButton = document.querySelector(".eraser-button");
+      let group1 = null;
+      let group2 = null;
+      let group3 = null;
+      let controls = document.querySelectorAll(
+        ".number-button:not(.eraser-button)"
+      );
       blocks.forEach((block) => {
         block.onclick = function () {
           blocks.forEach((b) => {
@@ -156,6 +162,9 @@ export default {
           });
           this.classList.add("selected-block");
         };
+        group1 = document.querySelectorAll(`.${block.classList[1]}`);
+        group2 = document.querySelectorAll(`.${block.classList[2]}`);
+        group3 = document.querySelectorAll(`.${block.classList[3]}`);
       });
       controls.forEach((control) => {
         control.onclick = function () {
@@ -163,9 +172,9 @@ export default {
             let block = document.querySelector(".selected-block");
             let num = this.innerHTML;
             block.innerHTML = num;
-            let group1 = document.querySelectorAll(`.${block.classList[1]}`);
-            let group2 = document.querySelectorAll(`.${block.classList[2]}`);
-            let group3 = document.querySelectorAll(`.${block.classList[3]}`);
+            group1 = document.querySelectorAll(`.${block.classList[1]}`);
+            group2 = document.querySelectorAll(`.${block.classList[2]}`);
+            group3 = document.querySelectorAll(`.${block.classList[3]}`);
             if (block.innerHTML !== block.dataset.num) {
               vm.mistakes++;
               document.querySelector("p span").innerHTML =
@@ -229,6 +238,13 @@ export default {
               }
             }
           }
+        };
+        earserButton.onclick = function () {
+          document.querySelector(".selected-block").innerHTML = "";
+          blocks.forEach((e) => {
+            e.classList.remove("correct");
+            e.classList.remove("wrong");
+          });
         };
       });
     },
